@@ -18,3 +18,16 @@ export interface Question {
   isLongAnswer: boolean;
   inputFormat: string;
 }
+
+export interface QuestionListProps {
+  currentOpenForm: Question | undefined;
+  questions: Question[];
+  setCurrentOpenForm?: any;
+  errorFormValues?: {};
+}
+export interface QuestionItemProps {
+  isFormOpen?: boolean;
+  question: Question;
+  setCurrentOpenForm?: any;
+  errorFormValues?: {};
+}

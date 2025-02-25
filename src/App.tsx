@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import { Header } from './components/header/Header';
-import { HomePage } from './components/index';
+import HomePage from './components/HomePage';
+
 
 
 function App() {

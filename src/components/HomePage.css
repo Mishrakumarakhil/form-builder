@@ -1,0 +1,189 @@
+/* Base Styles */
+.home-page-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.add-question-btn {
+  background-color: #1718ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Text animation on hover */
+.add-question-btn span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: textAnimation 0.5s forwards;
+}
+
+.add-question-btn:hover {
+  background-color: #1718ff;
+}
+
+@keyframes textAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Styles */
+
+/* For tablets and smaller screens */
+@media (max-width: 768px) {
+  .home-page-container {
+    padding: 15px;
+  }
+
+  .add-question-btn {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 18px;
+  }
+}
+
+/* For mobile screens and below */
+@media (max-width: 480px) {
+  .home-page-container {
+    padding: 10px;
+  }
+
+  .add-question-btn {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 20px;
+  }
+}
+/* Base Styles for Form */
+.question-form-container {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column layout */
+  gap: 25px;
+  min-width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.question-form-container .form-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.question-form-container label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.question-form-container input,
+.question-form-container select {
+  padding: 14px;
+  margin-bottom: 18px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+/* Hover effect for inputs */
+.question-form-container input:focus,
+.question-form-container select:focus {
+  border-color: #1718ff;
+  outline: none;
+}
+
+/* Checkbox group styling */
+.question-form-container .checkbox-group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.question-form-container .checkbox-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.question-form-container .checkbox-group label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Button Styling */
+.question-form-container button {
+  padding: 14px 24px; /* Increased padding for a larger button */
+  background-color: #1718ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.question-form-container button:hover {
+  background-color: #1718cc;
+}
+
+/* Responsive Styles */
+
+/* For tablets and smaller screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .question-form-container {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .question-form-container input,
+  .question-form-container select {
+    width: 100%;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .question-form-container {
+    padding: 15px;
+  }
+
+  .question-form-container input,
+  .question-form-container select {
+    padding: 16px;
+    font-size: 18px;
+  }
+
+  .question-form-container button {
+    width: 100%;
+    font-size: 18px;
+    padding: 14px 0;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
