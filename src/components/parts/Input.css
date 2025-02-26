@@ -1,0 +1,140 @@
+/* Base styles for the input element */
+.custom-input {
+  position: relative;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f7f9fa;
+  font-size: 14px;
+  color: #333;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+/* Error styles for the input */
+.custom-input.error {
+  border-color: #ed2424; /* Red border for error */
+}
+
+/* Focused input styles */
+.custom-input:focus {
+  border-color: #6c757d; /* Custom secondary focus border color */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Optional subtle focus shadow */
+}
+
+/* Floating label styles */
+.custom-input-label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #6c757d;
+  background-color: white;
+  padding: 0 5px;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Floating label when input is focused or has a value */
+.custom-input:focus + .custom-input-label,
+.custom-input:not(:placeholder-shown) + .custom-input-label {
+  top: -10px;
+  font-size: 12px;
+  color: #6c757d;
+  background-color: white;
+  padding: 0 4px;
+}
+
+/* Default placeholder styling when input is empty */
+.custom-input:placeholder-shown + .custom-input-label {
+  top: 10px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* Hover and focus states */
+.custom-input:hover {
+  border-color: #007bff;
+}
+
+.custom-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* RESPONSIVE STYLES */
+
+/* Mobile - smaller screens */
+@media screen and (max-width: 640px) {
+  .custom-input {
+    padding: 10px 14px;
+    font-size: 12px;
+    height: 45px;
+  }
+
+  .custom-input-label {
+    font-size: 12px;
+  }
+
+  .custom-input:placeholder-shown + .custom-input-label {
+    top: 8px;
+    font-size: 12px;
+  }
+
+  .custom-input:focus + .custom-input-label,
+  .custom-input:not(:placeholder-shown) + .custom-input-label {
+    top: -6px;
+    font-size: 10px;
+  }
+}
+
+/* Tablet - medium screens (portrait and landscape) */
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+  .custom-input {
+    padding: 12px 16px;
+    font-size: 14px;
+    height: 50px;
+  }
+
+  .custom-input-label {
+    font-size: 14px;
+  }
+
+  .custom-input:placeholder-shown + .custom-input-label {
+    top: 10px;
+    font-size: 14px;
+  }
+
+  .custom-input:focus + .custom-input-label,
+  .custom-input:not(:placeholder-shown) + .custom-input-label {
+    top: -8px;
+    font-size: 12px;
+  }
+}
+
+/* Desktop - larger screens */
+@media screen and (min-width: 1025px) {
+  .custom-input {
+    padding: 14px 18px;
+    font-size: 16px;
+    height: 56px;
+  }
+
+  .custom-input-label {
+    font-size: 16px;
+  }
+
+  .custom-input:placeholder-shown + .custom-input-label {
+    top: 12px;
+    font-size: 16px;
+  }
+
+  .custom-input:focus + .custom-input-label,
+  .custom-input:not(:placeholder-shown) + .custom-input-label {
+    top: -10px;
+    font-size: 14px;
+  }
+}

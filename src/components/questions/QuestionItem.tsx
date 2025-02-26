@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faChevronDown, faGripVertical } from '@fortawesome/free-solid-svg-icons';
 import QuestionForm from './QuestionForm';
 import { QuestionItemProps } from '../../types/questionInterface';
-
-import './QuestionItem.css'; // Import the CSS file
+import './QuestionItem.css';
 
 export default function QuestionItem({
     isFormOpen,

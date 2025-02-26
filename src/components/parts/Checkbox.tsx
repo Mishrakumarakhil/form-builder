@@ -13,7 +13,7 @@ export default function Checkbox({
         placeholder="Question title"
         checked={value ? true : false}
         onChange={(e) => updateQuestion(questionId, name, e.target.checked)}
-        className=""
+        style={{ width: '1rem', height: '1rem' }}
       />
       <label>{label}</label>
     </>

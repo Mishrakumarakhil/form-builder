@@ -1,4 +1,5 @@
 import { InputProps } from "../../types/inputInterface";
+import "./Select.css";
 interface SelectInputProps extends InputProps {
   options: { name: string; label: string }[];
 }
@@ -16,6 +17,7 @@ export default function Select({
       <select
         onChange={(e) => updateQuestion(questionId, name, e.target.value)}
         value={value}
+        className={`select-input ${error ? 'error' : ''}`}
       >
         <option value="" disabled>
           {error ? error : "Question type*"}
@@ -23,7 +25,7 @@ export default function Select({
         {options &&
           options.map((val) => <option value={val.name}>{val.label}</option>)}
       </select>
-      <label>{label}</label>
+      <label className="select-input-label">{label}</label>
     </>
   );
 }

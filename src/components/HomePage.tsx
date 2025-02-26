@@ -23,6 +23,7 @@ const HomePage = () => {
                 isDropdownOpen: false,
             }));
             setQuestions(questionList);
+            if (questions.length == 0) setIsFormValid(true);
         }
     }, []);
 
@@ -40,6 +41,7 @@ const HomePage = () => {
         };
         setCurrentOpenForm(currForm);
         setQuestions((prev) => [...prev, currForm]);
+        setIsFormValid(false);
     };
 
     const updateQuestion = async (

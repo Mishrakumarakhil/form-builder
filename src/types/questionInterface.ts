@@ -1,13 +1,7 @@
 export interface Question {
   id: string;
   title: string;
-  questionType:
-    | "text"
-    | "number"
-    | "select"
-    | "email"
-    | "description"
-    | "phone";
+  questionType: string; //"text" | "number" | "select"| "email" | "description"| "phone";
   description: string;
   isRequired: boolean;
   isHidden: boolean;

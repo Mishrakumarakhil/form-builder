@@ -1,5 +1,6 @@
 import { InputProps } from "../../types/inputInterface";
 import { useEffect, useRef, useState } from "react";
+import "./Input.css";
 export default function Input({
   label,
   name,
@@ -14,11 +15,9 @@ export default function Input({
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.addEventListener("focus", function () {
-        console.log("focussed");
         setFocussed(true);
       });
       inputRef.current.addEventListener("blur", function () {
-        console.log("blur");
         setFocussed(false);
       });
     } else setFocussed(false);
@@ -34,13 +33,9 @@ export default function Input({
         value={value}
         required={required}
         onChange={(e) => updateQuestion(questionId, name, e.target.value)}
-        className=""
+        className={`custom-input ${error ? "error" : ""}`}
       />
-      {
-        <label className="">
-          {label}
-        </label>
-      }
+      {<label className="custom-input-label">{label}</label>}
     </>
   );
 }

@@ -4,8 +4,16 @@ import Select from "../parts/Select";
 import Checkbox from "../parts/Checkbox";
 import { QuestionItemProps } from "../../types/questionInterface";
 import { numberTypeOptions, questionTypeOptions } from "../../constants/constants";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import "./QuestionForm.css"
 
-function QuestionForm({ question, setCurrentOpenForm, updateQuestion, errorFormValues }: QuestionItemProps) {
+function QuestionForm({
+    question,
+    setCurrentOpenForm,
+    updateQuestion,
+    errorFormValues,
+}: QuestionItemProps) {
     return (
         <div className="question-form-container">
             <div className="form-section">
@@ -22,7 +30,13 @@ function QuestionForm({ question, setCurrentOpenForm, updateQuestion, errorFormV
                             : ""
                     }
                 />
+                <FontAwesomeIcon
+                    onClick={() => setCurrentOpenForm(() => { })}
+                    icon={faChevronUp}
+                    className="chevron-icon"
+                />
             </div>
+
             <div className="form-section">
                 <Select
                     label={"Question type *"}
@@ -77,6 +91,7 @@ function QuestionForm({ question, setCurrentOpenForm, updateQuestion, errorFormV
                             onChange={(e) =>
                                 updateQuestion(question.id, "minValue", Number(e.target.value))
                             }
+                            className="min-max-input"
                         />
                         <input
                             type="number"
@@ -85,6 +100,7 @@ function QuestionForm({ question, setCurrentOpenForm, updateQuestion, errorFormV
                             onChange={(e) =>
                                 updateQuestion(question.id, "maxValue", Number(e.target.value))
                             }
+                            className="min-max-input"
                         />
                     </div>
                 </div>
