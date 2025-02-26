@@ -5,6 +5,7 @@ export default function QuestionItem({
     isFormOpen,
     question,
     setCurrentOpenForm,
+    updateQuestion,
 }: QuestionItemProps) {
     return (
         <div>
@@ -17,6 +18,7 @@ export default function QuestionItem({
                 <QuestionForm
                     question={question}
                     setCurrentOpenForm={setCurrentOpenForm}
+                    updateQuestion={updateQuestion}
                 />
             )}
         </div>

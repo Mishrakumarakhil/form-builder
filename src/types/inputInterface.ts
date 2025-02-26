@@ -6,4 +6,5 @@ export interface InputProps {
   questionId: string;
   required?: boolean;
   error?: any;
+  updateQuestion: (id: string, field: keyof Question, value: any) => void;
 }

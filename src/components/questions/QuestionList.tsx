@@ -5,6 +5,7 @@ export default function QuestionList({
     currentOpenForm,
     questions,
     setCurrentOpenForm,
+    updateQuestion,
 }: QuestionListProps) {
     return (
         <div>
@@ -22,6 +23,7 @@ export default function QuestionList({
                         currentOpenForm && currentOpenForm.id === q.id ? currentOpenForm : q
                     }
                     setCurrentOpenForm={setCurrentOpenForm}
+                    updateQuestion={updateQuestion}
                 />
             ))}
         </div>

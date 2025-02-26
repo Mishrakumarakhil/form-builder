@@ -7,10 +7,16 @@ export default function Select({
   value,
   options,
   error,
+  questionId,
+  name,
+  updateQuestion,
 }: SelectInputProps) {
   return (
     <>
-      <select value={value}>
+      <select
+        onChange={(e) => updateQuestion(questionId, name, e.target.value)}
+        value={value}
+      >
         <option value="" disabled>
           {error ? error : "Question type*"}
         </option>

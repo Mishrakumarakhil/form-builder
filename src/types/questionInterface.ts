@@ -24,10 +24,12 @@ export interface QuestionListProps {
   questions: Question[];
   setCurrentOpenForm?: any;
   errorFormValues?: {};
+  updateQuestion: (id: string, field: keyof Question, value: any) => void;
 }
 export interface QuestionItemProps {
   isFormOpen?: boolean;
   question: Question;
   setCurrentOpenForm?: any;
   errorFormValues?: {};
+  updateQuestion: (id: string, field: keyof Question, value: any) => void;
 }
