@@ -1,5 +1,6 @@
 /* Container for the entire form */
 .question-form-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -14,6 +15,7 @@
 /* Form section styling */
 .form-section {
   display: flex;
+  position: relative;
   flex-direction: column;
   gap: 10px;
   padding: 10px 0;

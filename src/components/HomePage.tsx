@@ -31,7 +31,7 @@ const HomePage = () => {
         const currForm: Question = {
             id: Date.now().toString(),
             title: "",
-            questionType: "text",
+            questionType: "",
             description: "",
             isRequired: false,
             isHidden: false,

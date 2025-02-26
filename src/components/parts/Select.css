@@ -37,7 +37,7 @@
 /* Floating label when input is focused or has a value */
 .select-input:focus + .select-input-label,
 .select-input:not(:placeholder-shown) + .select-input-label {
-  top: -8px;
+  top: 12px;
   font-size: 12px;
   color: #6c757d;
   background-color: white;
@@ -87,7 +87,7 @@
 
   .select-input:focus + .select-input-label,
   .select-input:not(:placeholder-shown) + .select-input-label {
-    top: -6px;
+    top: 6px;
     font-size: 10px;
   }
 }
@@ -111,7 +111,7 @@
 
   .select-input:focus + .select-input-label,
   .select-input:not(:placeholder-shown) + .select-input-label {
-    top: -8px;
+    top: 8px;
     font-size: 12px;
   }
 }
@@ -135,7 +135,7 @@
 
   .select-input:focus + .select-input-label,
   .select-input:not(:placeholder-shown) + .select-input-label {
-    top: -10px;
+    top: 10px;
     font-size: 14px;
   }
 }
