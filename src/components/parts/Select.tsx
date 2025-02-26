@@ -94,6 +94,8 @@ export default function CustomSelect({
                     className="group-header"
                     onClick={(e) => toggleGroup(group.name, e)}
                   >
+
+                    <span className="group-label">{group.label}</span>
                     <svg
                       width="12"
                       height="12"
@@ -110,7 +112,6 @@ export default function CustomSelect({
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <span className="group-label">{group.label}</span>
                   </div>
 
                   {openGroups[group.name] && (
