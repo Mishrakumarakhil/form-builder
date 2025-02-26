@@ -1,0 +1,54 @@
+.question-item-wrapper {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 1rem;
+  background-color: #f8f8fa;
+  color: #1d5e6d;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.question-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question-item-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1d5e6d;
+}
+
+.question-item-title .grip-icon {
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.icons-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.icon {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+.question-form-wrapper {
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .question-item-wrapper {
+    padding: 2rem;
+  }
+}

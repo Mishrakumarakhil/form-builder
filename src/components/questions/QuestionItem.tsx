@@ -1,7 +1,10 @@
-import QuestionForm from "./QuestionForm";
-import { QuestionItemProps } from "../../types/questionInterface";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faChevronDown, faGripVertical } from '@fortawesome/free-solid-svg-icons';
+import QuestionForm from './QuestionForm';
+import { QuestionItemProps } from '../../types/questionInterface';
+
+import './QuestionItem.css'; // Import the CSS file
 
 export default function QuestionItem({
     isFormOpen,
@@ -12,33 +15,38 @@ export default function QuestionItem({
     removeQuestion,
 }: QuestionItemProps) {
     return (
-        <div>
+        <div className="question-item-wrapper">
             {question && !isFormOpen && (
-                <div>
-                    <div>
+                <div className="question-item-header">
+                    <div className="question-item-title">
+                        <FontAwesomeIcon icon={faGripVertical} className="grip-icon" />
                         {question.title}
-
-                        <div>
-                            <FontAwesomeIcon
-                                onClick={() => removeQuestion(question.id)}
-                                icon={faTrash}
-                            />
-                            <FontAwesomeIcon
-                                onClick={(e) => setCurrentOpenForm(() => question)}
-                                icon={faChevronDown}
-                            />
-                        </div>
+                    </div>
+                    <div className="icons-container">
+                        <FontAwesomeIcon
+                            onClick={() => removeQuestion(question.id)}
+                            icon={faTrash}
+                            className="icon"
+                        />
+                        <FontAwesomeIcon
+                            onClick={() => setCurrentOpenForm(question)}
+                            icon={faChevronDown}
+                            className="icon"
+                        />
                     </div>
                 </div>
             )}
+
             {question && isFormOpen && (
-                <QuestionForm
-                    question={question}
-                    setCurrentOpenForm={setCurrentOpenForm}
-                    updateQuestion={updateQuestion}
-                    errorFormValues={errorFormValues}
-                    removeQuestion={removeQuestion}
-                />
+                <div className="question-form-wrapper">
+                    <QuestionForm
+                        question={question}
+                        setCurrentOpenForm={setCurrentOpenForm}
+                        updateQuestion={updateQuestion}
+                        errorFormValues={errorFormValues}
+                        removeQuestion={removeQuestion}
+                    />
+                </div>
             )}
         </div>
     );
