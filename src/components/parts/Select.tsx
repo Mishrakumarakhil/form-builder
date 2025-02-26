@@ -1,12 +1,15 @@
-import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
 import { InputProps } from "../../types/inputInterface";
-import "./Select.css";
+import type React from "react"
+import { useState, useRef, useEffect } from "react"
+import "./Select.css"
+
 interface SelectInputProps extends InputProps {
   options: {
     options?: any; name: string; label: string
   }[];
 }
-export default function Select({
+
+export default function CustomSelect({
   label,
   value,
   options,
@@ -15,47 +18,134 @@ export default function Select({
   name,
   updateQuestion,
 }: SelectInputProps) {
+  const [isOpen, setIsOpen] = useState(false)
+  const [openGroups, setOpenGroups] = useState<{ [key: string]: boolean }>({})
+  const selectRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
+
+  const toggleGroup = (groupName: string, e: React.MouseEvent) => {
+    e.stopPropagation()
+    setOpenGroups((prev) => ({
+      ...prev,
+      [groupName]: !prev[groupName],
+    }))
+  }
+
+  const handleSelect = (optionValue: string) => {
+    updateQuestion(questionId, name, optionValue)
+    setIsOpen(false)
+  }
+
+  const getCurrentLabel = () => {
+    for (const option of options) {
+      if (option.options) {
+        const subOption = option.options.find((sub: any) => sub.name === value)
+        if (subOption) return subOption.label
+      } else if (option.name === value) {
+        return option.label
+      }
+    }
+    return ""
+  }
+
   return (
-    <>
-      <select
-        key={questionId}
-        onChange={(e) => updateQuestion(questionId, name, e.target.value)}
-        value={value}
-        className={`select-input ${error ? 'error' : ''}`}
-        data-testid="question-element"
+    <div className="custom-select" ref={selectRef}>
+      <div
+        className={`select-input ${error ? "error" : ""}`}
+        onClick={() => setIsOpen(!isOpen)}
+        role="combobox"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        tabIndex={0}
       >
-        <option value="" disabled>
-          {error ? error : "Question type*"}
-        </option>
-
-        {/* Render main options */}
-        {options &&
-          options.map((val) => {
-            // If the option has nested sub-options (like "Select"), render them as an optgroup
-            if (val.options) {
-              return (
-                <optgroup key={val.name} label={val.label}>
-                  {val.options.map((subOption: any) => (
-                    <option key={subOption.name} value={subOption.name}>
-                      {subOption.label}
-                    </option>
-                  ))}
-                </optgroup>
-              );
-            }
-
-            // Render standard options (Text, Description, etc.)
-            return (
-              <option key={val.name} value={val.name}>
-                {val.label}
-              </option>
-            );
-          })}
-      </select>
+        {getCurrentLabel() || (error ? error : "Question type*")}
+        <span className="dropdown-arrow">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M2.5 4.5L6 8L9.5 4.5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      </div>
 
       <label className="select-input-label">{label}</label>
 
+      {isOpen && (
+        <div className="select-dropdown" role="listbox">
+          {options.map((group) => {
+            if (group.options) {
+              return (
+                <div key={group.name} className="group-container">
+                  <div
+                    className="group-header"
+                    onClick={(e) => toggleGroup(group.name, e)}
+                  >
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`toggle-icon ${openGroups[group.name] ? "open" : ""}`}
+                    >
+                      <path
+                        d="M4.5 2.5L8 6L4.5 9.5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    <span className="group-label">{group.label}</span>
+                  </div>
 
-    </>
-  );
+                  {openGroups[group.name] && (
+                    <div className="group-options">
+                      {group.options.map((option: any) => (
+                        <div
+                          key={option.name}
+                          className={`option ${value === option.name ? "selected" : ""}`}
+                          onClick={() => handleSelect(option.name)}
+                          role="option"
+                          aria-selected={value === option.name}
+                        >
+                          {option.label}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            }
+
+            return (
+              <div
+                key={group.name}
+                className={`option ${value === group.name ? "selected" : ""}`}
+                onClick={() => handleSelect(group.name)}
+                role="option"
+                aria-selected={value === group.name}
+              >
+                {group.label}
+              </div>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
 }

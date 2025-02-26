@@ -1,141 +1,96 @@
-/* Base styles for the select input */
-.select-input {
+.custom-select {
   position: relative;
   width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  height: 56px;
-  font-size: 14px;
+}
+
+.select-input {
+  position: relative;
+  width: 80%;
+  padding: 10px 30px 10px 10px;
   border: 1px solid #ccc;
-  background-color: #f7f9fa;
-  appearance: none; /* Removes default arrow */
-  transition: all 0.3s ease;
-  color: #333;
-  max-width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #fff;
 }
 
-/* Error styles for select */
 .select-input.error {
-  border-color: #ed2424; /* Red border for error */
+  border-color: #ff0000;
 }
 
-/* Label positioning and styling */
 .select-input-label {
   position: absolute;
-  left: 12px;
+  top: -8px;
+  left: 10px;
+  background-color: #fff;
+  padding: 0 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 14px;
-  color: #6c757d;
-  background-color: white;
-  padding: 0 5px;
-  transition: all 0.3s ease;
   pointer-events: none;
-  user-select: none;
 }
 
-/* Floating label when input is focused or has a value */
-.select-input:focus + .select-input-label,
-.select-input:not(:placeholder-shown) + .select-input-label {
-  top: 12px;
-  font-size: 12px;
-  color: #6c757d;
-  background-color: white;
-  padding: 0 4px;
+.select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
-/* Default placeholder styling */
-.select-input:placeholder-shown + .select-input-label {
-  top: 10px;
-  font-size: 14px;
-  color: #aaa;
+.group-container {
+  position: relative;
 }
 
-/* Hover and focus effects */
-.select-input:hover {
-  border-color: #007bff;
+.group-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
 }
 
-.select-input:focus {
-  outline: none;
-  border-color: #007bff;
+.group-header:hover {
+  background-color: #f5f5f5;
 }
 
-/* Styling for the options inside the select */
-.select-input option {
-  padding: 8px;
+.group-label {
+  font-weight: 500;
 }
 
-/* RESPONSIVE STYLES */
-
-/* Mobile - smaller screens */
-@media screen and (max-width: 640px) {
-  .select-input {
-    padding: 10px;
-    font-size: 12px;
-    height: 50px;
-  }
-
-  .select-input-label {
-    font-size: 12px;
-  }
-
-  .select-input:placeholder-shown + .select-input-label {
-    top: 8px;
-    font-size: 12px;
-  }
-
-  .select-input:focus + .select-input-label,
-  .select-input:not(:placeholder-shown) + .select-input-label {
-    top: 6px;
-    font-size: 10px;
-  }
+.toggle-icon {
+  transition: transform 0.2s ease;
 }
 
-/* Tablet - medium screens (portrait and landscape) */
-@media screen and (min-width: 641px) and (max-width: 1024px) {
-  .select-input {
-    padding: 12px;
-    font-size: 14px;
-    height: 56px;
-  }
-
-  .select-input-label {
-    font-size: 14px;
-  }
-
-  .select-input:placeholder-shown + .select-input-label {
-    top: 10px;
-    font-size: 14px;
-  }
-
-  .select-input:focus + .select-input-label,
-  .select-input:not(:placeholder-shown) + .select-input-label {
-    top: 8px;
-    font-size: 12px;
-  }
+.toggle-icon.open {
+  transform: rotate(90deg);
 }
 
-/* Desktop - larger screens */
-@media screen and (min-width: 1025px) {
-  .select-input {
-    padding: 14px;
-    font-size: 16px;
-    height: 60px;
-  }
+.group-options {
+  padding-left: 32px;
+}
 
-  .select-input-label {
-    font-size: 16px;
-  }
+.option {
+  padding: 8px 16px;
+  cursor: pointer;
+}
 
-  .select-input:placeholder-shown + .select-input-label {
-    top: 12px;
-    font-size: 16px;
-  }
+.option:hover {
+  background-color: #f5f5f5;
+}
 
-  .select-input:focus + .select-input-label,
-  .select-input:not(:placeholder-shown) + .select-input-label {
-    top: 10px;
-    font-size: 14px;
-  }
+.option.selected {
+  background-color: #e6e6e6;
 }
