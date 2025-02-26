@@ -61,7 +61,7 @@ const HomePage = () => {
     };
 
     const removeQuestion = async (id: string) => {
-        if (questions.length == 1) setIsFormValid(() => true)
+        setIsFormValid(() => true);
         setQuestions((prev) => prev.filter((q) => q.id !== id));
         await deleteQuestion(id, setLoading);
     };
