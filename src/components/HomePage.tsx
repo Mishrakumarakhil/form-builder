@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
+import "./HomePage.css";
 import { useState } from "react";
 import QuestionList from "./questions/QuestionList";
 import { Question } from "../types/questionInterface";
 import { saveQuestion } from "../query/services";
-
-import "./HomePage.css";
 import { validateForm } from "../query/helper";
+import Loader from "./Loader";
+
 
 const HomePage = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -61,6 +62,7 @@ const HomePage = () => {
 
     return (
         <div className="home-page-container">
+
             <QuestionList
                 currentOpenForm={currentOpenForm}
                 questions={questions}
@@ -68,6 +70,7 @@ const HomePage = () => {
                 updateQuestion={updateQuestion}
                 errorFormValues={errorFormValues}
             />
+            {loading && <Loader />}
             <button onClick={addQuestion} className="add-question-btn">
                 + Add Question
             </button>
