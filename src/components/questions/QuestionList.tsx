@@ -7,6 +7,7 @@ export default function QuestionList({
     setCurrentOpenForm,
     updateQuestion,
     errorFormValues,
+    removeQuestion,
 }: QuestionListProps) {
     return (
         <div>
@@ -26,6 +27,7 @@ export default function QuestionList({
                     setCurrentOpenForm={setCurrentOpenForm}
                     updateQuestion={updateQuestion}
                     errorFormValues={errorFormValues}
+                    removeQuestion={removeQuestion}
                 />
             ))}
         </div>

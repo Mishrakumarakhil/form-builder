@@ -1,24 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./HomePage.css";
-import { useState } from "react";
 import QuestionList from "./questions/QuestionList";
 import { Question } from "../types/questionInterface";
-import { saveQuestion } from "../query/services";
+import { saveQuestion, deleteQuestion } from "../query/services";
 import { validateForm } from "../query/helper";
 import Loader from "./Loader";
-
 
 const HomePage = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [loading, setLoading] = useState(false);
     const [isFormValid, setIsFormValid] = useState(true);
     const [errorFormValues, setErrorFormValues] = useState({});
-
     const [currentOpenForm, setCurrentOpenForm] = useState<
         Question | undefined
     >();
-    useEffect(() => {
 
+    useEffect(() => {
         const savedQuestions = localStorage.getItem("form_questions");
         if (savedQuestions) {
             const questionList = JSON.parse(savedQuestions).map((val: Question) => ({
@@ -28,6 +25,7 @@ const HomePage = () => {
             setQuestions(questionList);
         }
     }, []);
+
     const addQuestion = () => {
         const currForm: Question = {
             id: Date.now().toString(),
@@ -60,20 +58,28 @@ const HomePage = () => {
         }
     };
 
+    const removeQuestion = async (id: string) => {
+        if (questions.length == 1) setIsFormValid(() => true)
+        setQuestions((prev) => prev.filter((q) => q.id !== id));
+        await deleteQuestion(id, setLoading);
+    };
+
     return (
         <div className="home-page-container">
-
             <QuestionList
                 currentOpenForm={currentOpenForm}
                 questions={questions}
                 setCurrentOpenForm={setCurrentOpenForm}
                 updateQuestion={updateQuestion}
                 errorFormValues={errorFormValues}
+                removeQuestion={removeQuestion}
             />
             {loading && <Loader />}
-            <button onClick={addQuestion} className="add-question-btn">
-                + Add Question
-            </button>
+            {!loading && isFormValid && (
+                <button onClick={addQuestion} className="add-question-btn">
+                    + Add Question
+                </button>
+            )}
         </div>
     );
 };

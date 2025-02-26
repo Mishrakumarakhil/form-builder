@@ -44,3 +44,24 @@ export const saveQuestion = async (
     debouncedSaveToLocalStorage(question, setLoading, resolve);
   });
 };
+
+export const deleteQuestion = async (id: string, setLoading: Function) => {
+  if (!id) return;
+  setLoading(true);
+
+  const updatedQuestions = await new Promise<Question[]>((resolve) => {
+    setTimeout(() => {
+      const savedQuestions = JSON.parse(
+        localStorage.getItem("form_questions") || "[]"
+      );
+      const updatedQuestions = savedQuestions.filter(
+        (q: Question) => q.id !== id
+      );
+      localStorage.setItem("form_questions", JSON.stringify(updatedQuestions));
+      setLoading(false);
+      resolve(updatedQuestions);
+    }, 1000);
+  });
+
+  return updatedQuestions;
+};

@@ -25,6 +25,7 @@ export interface QuestionListProps {
   setCurrentOpenForm?: any;
   errorFormValues?: {};
   updateQuestion: (id: string, field: keyof Question, value: any) => void;
+  removeQuestion: (id: string) => void;
 }
 export interface QuestionItemProps {
   isFormOpen?: boolean;
@@ -32,4 +33,5 @@ export interface QuestionItemProps {
   setCurrentOpenForm?: any;
   errorFormValues?: {};
   updateQuestion: (id: string, field: keyof Question, value: any) => void;
+  removeQuestion: (id: string) => void;
 }
