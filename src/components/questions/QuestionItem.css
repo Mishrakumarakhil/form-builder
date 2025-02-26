@@ -38,7 +38,9 @@
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
-
+.fa-trash {
+  color: red;
+}
 .icon:hover {
   transform: scale(1.1);
 }
