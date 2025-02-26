@@ -8,6 +8,7 @@ export default function QuestionList({
     updateQuestion,
     errorFormValues,
     removeQuestion,
+    loading,
 }: QuestionListProps) {
     return (
         <div>
@@ -28,6 +29,7 @@ export default function QuestionList({
                     updateQuestion={updateQuestion}
                     errorFormValues={errorFormValues}
                     removeQuestion={removeQuestion}
+                    loading={loading}
                 />
             ))}
         </div>

@@ -3,16 +3,21 @@ import Input from "../parts/Input";
 import Select from "../parts/Select";
 import Checkbox from "../parts/Checkbox";
 import { QuestionItemProps } from "../../types/questionInterface";
-import { numberTypeOptions, questionTypeOptions } from "../../constants/constants";
+import {
+    numberTypeOptions,
+    questionTypeOptions,
+} from "../../constants/constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import "./QuestionForm.css"
+import "./QuestionForm.css";
+import Loader from "../Loader";
 
 function QuestionForm({
     question,
     setCurrentOpenForm,
     updateQuestion,
     errorFormValues,
+    loading,
 }: QuestionItemProps) {
     return (
         <div className="question-form-container">
@@ -30,6 +35,7 @@ function QuestionForm({
                             : ""
                     }
                 />
+                {loading && <Loader />}
                 <FontAwesomeIcon
                     onClick={() => setCurrentOpenForm(() => { })}
                     icon={faChevronUp}

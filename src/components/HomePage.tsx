@@ -4,7 +4,6 @@ import QuestionList from "./questions/QuestionList";
 import { Question } from "../types/questionInterface";
 import { saveQuestion, deleteQuestion } from "../query/services";
 import { validateForm } from "../query/helper";
-import Loader from "./Loader";
 
 const HomePage = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -75,8 +74,9 @@ const HomePage = () => {
                 updateQuestion={updateQuestion}
                 errorFormValues={errorFormValues}
                 removeQuestion={removeQuestion}
+                loading={loading}
             />
-            {loading && <Loader />}
+
             {!loading && isFormValid && (
                 <button onClick={addQuestion} className="add-question-btn">
                     + Add Question

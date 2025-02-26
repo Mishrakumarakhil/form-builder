@@ -12,6 +12,7 @@ export default function QuestionItem({
     updateQuestion,
     errorFormValues,
     removeQuestion,
+    loading,
 }: QuestionItemProps) {
     return (
         <div className="question-item-wrapper">
@@ -44,6 +45,7 @@ export default function QuestionItem({
                         updateQuestion={updateQuestion}
                         errorFormValues={errorFormValues}
                         removeQuestion={removeQuestion}
+                        loading={loading}
                     />
                 </div>
             )}

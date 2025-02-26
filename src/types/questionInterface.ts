@@ -20,6 +20,7 @@ export interface QuestionListProps {
   errorFormValues?: {};
   updateQuestion: (id: string, field: keyof Question, value: any) => void;
   removeQuestion: (id: string) => void;
+  loading: boolean;
 }
 export interface QuestionItemProps {
   isFormOpen?: boolean;
@@ -28,4 +29,5 @@ export interface QuestionItemProps {
   errorFormValues?: {};
   updateQuestion: (id: string, field: keyof Question, value: any) => void;
   removeQuestion: (id: string) => void;
+  loading: boolean;
 }
