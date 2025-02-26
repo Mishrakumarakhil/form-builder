@@ -3,11 +3,19 @@ export const companyLogoSrc =
 
 export const questionTypeOptions = [
   { label: "Text", name: "text" },
-  { label: "Description", name: "description" },
-  { label: "Email", name: "email" },
   { label: "Number", name: "number" },
-  { label: "Phone Number", name: "phone" },
+
+  {
+    label: "Select",
+    name: "select",
+    options: [
+      { label: "Description", name: "description" },
+      { label: "Email", name: "email" },
+      { label: "Phone Number", name: "phone" },
+    ],
+  },
 ];
+
 export const numberTypeOptions = [
   { label: "Default", name: "default" },
   { label: "Years", name: "year" },
