@@ -15,9 +15,11 @@ export default function Select({
   return (
     <>
       <select
+        key={questionId}
         onChange={(e) => updateQuestion(questionId, name, e.target.value)}
         value={value}
         className={`select-input ${error ? 'error' : ''}`}
+        data-testid="question-element"
       >
         <option value="" disabled>
           {error ? error : "Question type*"}

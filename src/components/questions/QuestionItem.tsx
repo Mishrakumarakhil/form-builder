@@ -27,6 +27,8 @@ export default function QuestionItem({
                             onClick={() => removeQuestion(question.id)}
                             icon={faTrash}
                             className="icon"
+
+                            data-testid="remove-question-button"
                         />
                         <FontAwesomeIcon
                             onClick={() => setCurrentOpenForm(question)}
