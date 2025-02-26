@@ -5,15 +5,19 @@ import { Question } from "../types/questionInterface";
 import { saveQuestion } from "../query/services";
 
 import "./HomePage.css";
+import { validateForm } from "../query/helper";
 
 const HomePage = () => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [loading, setLoading] = useState(false);
+    const [isFormValid, setIsFormValid] = useState(true);
+    const [errorFormValues, setErrorFormValues] = useState({});
 
     const [currentOpenForm, setCurrentOpenForm] = useState<
         Question | undefined
     >();
     useEffect(() => {
+
         const savedQuestions = localStorage.getItem("form_questions");
         if (savedQuestions) {
             const questionList = JSON.parse(savedQuestions).map((val: Question) => ({
@@ -48,9 +52,11 @@ const HomePage = () => {
         const updatedForm = { ...currentOpenForm, [field]: value };
         setCurrentOpenForm(updatedForm);
 
-        const updatedQuestions = await saveQuestion(updatedForm, setLoading);
-        // @ts-ignore
-        setQuestions(updatedQuestions);
+        if (validateForm(updatedForm, setErrorFormValues, setIsFormValid)) {
+            const updatedQuestions = await saveQuestion(updatedForm, setLoading);
+            // @ts-ignore
+            setQuestions(updatedQuestions);
+        }
     };
 
     return (
@@ -60,6 +66,7 @@ const HomePage = () => {
                 questions={questions}
                 setCurrentOpenForm={setCurrentOpenForm}
                 updateQuestion={updateQuestion}
+                errorFormValues={errorFormValues}
             />
             <button onClick={addQuestion} className="add-question-btn">
                 + Add Question

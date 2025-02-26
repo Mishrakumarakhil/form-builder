@@ -6,6 +6,7 @@ export default function QuestionItem({
     question,
     setCurrentOpenForm,
     updateQuestion,
+    errorFormValues,
 }: QuestionItemProps) {
     return (
         <div>
@@ -19,6 +20,7 @@ export default function QuestionItem({
                     question={question}
                     setCurrentOpenForm={setCurrentOpenForm}
                     updateQuestion={updateQuestion}
+                    errorFormValues={errorFormValues}
                 />
             )}
         </div>

@@ -5,7 +5,7 @@ import Checkbox from "../parts/Checkbox";
 import { QuestionItemProps } from "../../types/questionInterface";
 import { numberTypeOptions, questionTypeOptions } from "../../constants/constants";
 
-function QuestionForm({ question, setCurrentOpenForm, updateQuestion }: QuestionItemProps) {
+function QuestionForm({ question, setCurrentOpenForm, updateQuestion, errorFormValues }: QuestionItemProps) {
     return (
         <div className="question-form-container">
             <div className="form-section">
@@ -16,6 +16,11 @@ function QuestionForm({ question, setCurrentOpenForm, updateQuestion }: Question
                     questionId={question.id}
                     required={true}
                     updateQuestion={updateQuestion}
+                    error={
+                        errorFormValues && "title" in errorFormValues
+                            ? errorFormValues.title
+                            : ""
+                    }
                 />
             </div>
             <div className="form-section">
@@ -26,6 +31,11 @@ function QuestionForm({ question, setCurrentOpenForm, updateQuestion }: Question
                     questionId={question.id}
                     options={questionTypeOptions}
                     updateQuestion={updateQuestion}
+                    error={
+                        errorFormValues && "questionType" in errorFormValues
+                            ? errorFormValues.questionType
+                            : ""
+                    }
                 />
                 <div className="checkbox-group">
                     <Checkbox
@@ -53,6 +63,11 @@ function QuestionForm({ question, setCurrentOpenForm, updateQuestion }: Question
                         questionId={question.id}
                         options={numberTypeOptions}
                         updateQuestion={updateQuestion}
+                        error={
+                            errorFormValues && "inputFormat" in errorFormValues
+                                ? errorFormValues.inputFormat
+                                : ""
+                        }
                     />
                     <div className="input-range">
                         <input
